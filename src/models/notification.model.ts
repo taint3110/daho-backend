@@ -1,7 +1,8 @@
-import {Entity, model, property} from '@loopback/repository';
+import {model, property} from '@loopback/repository';
+import {Base} from './base.model';
 
 @model()
-export class Notification extends Entity {
+export class Notification extends Base {
   @property({
     type: 'string',
     id: true,
@@ -20,7 +21,6 @@ export class Notification extends Entity {
     default: false,
   })
   isRead?: boolean;
-
 
   constructor(data?: Partial<Notification>) {
     super(data);

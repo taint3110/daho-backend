@@ -1,7 +1,8 @@
-import {Entity, model, property} from '@loopback/repository';
+import {model, property} from '@loopback/repository';
+import {Base} from './base.model';
 
 @model()
-export class Answer extends Entity {
+export class Answer extends Base {
   @property({
     type: 'string',
     id: true,
@@ -15,7 +16,6 @@ export class Answer extends Entity {
     default: false,
   })
   isAccepted?: boolean;
-
 
   constructor(data?: Partial<Answer>) {
     super(data);
