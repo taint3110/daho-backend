@@ -1,0 +1,86 @@
+@startuml Daho Entity Relationship Diagram
+hide circle
+skinparam linetype ortho
+
+entity "User" as user {
+  *id: ObjectID <<generated>>
+  --
+  *username: string
+  *email: string
+  *password: string
+  oldPassword?: string[]
+  lastLoginDate?: Date
+  role: EUserRoleEnum
+  ' EUserRoleEnum {
+  '   STUDENT = 'student',
+  '   TEACHER = 'teacher',
+  '   ADMIN = 'admin',
+  ' }
+  isDeleted?: boolean
+  createdAt?: Date
+  updatedAt?: Date
+}
+
+entity "Question" as question {
+  *id: ObjectID <<generated>>
+  --
+  *userId: ObjectID <<FK>>
+  *title: string
+  description: string
+  *categoryId: ObjectID <<FK>>
+  status: EQuestionStatusEnum
+  ' EQuestionStatusEnum {
+  '   OPEN = 'open',
+  '   ANSWERED = 'answered',
+  ' }
+  isDeleted?: boolean
+  createdAt?: Date
+  updatedAt?: Date
+}
+
+entity "Answer" as answer {
+  *id: ObjectID <<generated>>
+  --
+  *questionId: ObjectID <<FK>>
+  *userId: ObjectID <<FK>>
+  content: string
+  isAccepted: boolean
+  isDeleted?: boolean
+  createdAt?: Date
+  updatedAt?: Date
+}
+
+entity "Category" as category {
+  *id: ObjectID <<generated>>
+  --
+  *name: string
+  description: string
+  isDeleted?: boolean
+  createdAt?: Date
+  updatedAt?: Date
+}
+
+entity "Notification" as notification {
+  *id: ObjectID <<generated>>
+  --
+  *userId: ObjectID <<FK>>
+  relatedId: ObjectID
+  type: ENotificationType
+  ' ENotificationType {
+  '   QUESTION_ANSWERED = 'question_answered',
+  '   ANSWER_ACCEPTED = 'answer_accepted',
+  ' }
+  message: string
+  isRead?: boolean
+  isDeleted?: boolean
+  createdAt?: Date
+  updatedAt?: Date
+}
+
+user --{ question
+user --{ answer
+question --{ answer
+user --{ notification
+question }-- category
+
+@enduml
