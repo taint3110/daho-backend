@@ -4,9 +4,9 @@ import {OPERATION_SECURITY_SPEC} from '@loopback/authentication-jwt';
 import {inject} from '@loopback/core';
 import {model, property, repository} from '@loopback/repository';
 import {
+  HttpErrors,
   get,
   getModelSchemaRef,
-  HttpErrors,
   patch,
   post,
   requestBody,
@@ -28,7 +28,6 @@ import {
 import {BcryptHasher} from '../components/jwt-authentication/services/hash-password';
 import {validateCredentials} from '../components/jwt-authentication/services/validator';
 import {EPlatform} from '../enums/common';
-import {EAccountType} from '../enums/user';
 import {User, UserWithPassword, UserWithPasswordChange} from '../models';
 import {UserWithRelations} from '../models/user.model';
 import {EmailConfigurationRepository, UserRepository} from '../repositories';
@@ -85,7 +84,7 @@ export class AuthController {
     @repository(EmailConfigurationRepository)
     public emailConfigurationRepository: EmailConfigurationRepository,
 
-    @inject(PasswordHasherBindings.PASSWORD_HASHER)
+    @inject(PasswordHasherBindings.PASSWORD_HASHER, {optional: true})
     public hasher: BcryptHasher,
 
     @inject(UserServiceBindings.USER_SERVICE)

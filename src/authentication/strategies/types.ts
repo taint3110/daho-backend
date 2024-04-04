@@ -1,8 +1,8 @@
+import {Profile} from 'passport';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import {UserIdentityService} from '@loopback/authentication';
 import {securityId, UserProfile} from '@loopback/security';
-import {Profile} from 'passport';
 import {User} from '../../models';
 
 export type ProfileFunction = (
