@@ -1,4 +1,4 @@
-import {model, property, hasMany, hasOne} from '@loopback/repository';
+import {hasMany, hasOne, model, property} from '@loopback/repository';
 import {Base} from './base.model';
 import {Card} from './card.model';
 import {Major} from './major.model';
@@ -6,16 +6,23 @@ import {Major} from './major.model';
 @model()
 export class Subject extends Base {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
+    generated: false,
+    required: true,
   })
-  sub_id: number;
+  id: string;
+
+  @property({
+    type: 'number',
+  })
+  sub_id: string;
 
   @property({
     type: 'number',
     required: true,
   })
-  maj_id: number;
+  maj_id: string;
 
   @property({
     type: 'string',

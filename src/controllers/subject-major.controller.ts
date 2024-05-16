@@ -15,16 +15,14 @@ import {
   post,
   requestBody,
 } from '@loopback/rest';
-import {
-  Subject,
-  Major,
-} from '../models';
+import {Major, Subject} from '../models';
 import {SubjectRepository} from '../repositories';
 
 export class SubjectMajorController {
   constructor(
-    @repository(SubjectRepository) protected subjectRepository: SubjectRepository,
-  ) { }
+    @repository(SubjectRepository)
+    protected subjectRepository: SubjectRepository,
+  ) {}
 
   @get('/subjects/{id}/major', {
     responses: {
@@ -39,7 +37,7 @@ export class SubjectMajorController {
     },
   })
   async get(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @param.query.object('filter') filter?: Filter<Major>,
   ): Promise<Major> {
     return this.subjectRepository.major(id).get(filter);
@@ -61,11 +59,12 @@ export class SubjectMajorController {
           schema: getModelSchemaRef(Major, {
             title: 'NewMajorInSubject',
             exclude: ['maj_id'],
-            optional: ['subjectId']
+            optional: ['subjectId'],
           }),
         },
       },
-    }) major: Omit<Major, 'maj_id'>,
+    })
+    major: Omit<Major, 'maj_id'>,
   ): Promise<Major> {
     return this.subjectRepository.major(id).create(major);
   }
@@ -79,7 +78,7 @@ export class SubjectMajorController {
     },
   })
   async patch(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -102,7 +101,7 @@ export class SubjectMajorController {
     },
   })
   async delete(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Major)) where?: Where<Major>,
   ): Promise<Count> {
     return this.subjectRepository.major(id).delete(where);

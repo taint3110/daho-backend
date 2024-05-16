@@ -1,21 +1,27 @@
-import {model, property, hasMany} from '@loopback/repository';
+import {hasMany, model, property} from '@loopback/repository';
 import {Base} from './base.model';
 import {Major} from './major.model';
 
 @model()
 export class Faculty extends Base {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
-    generated: true,
+    generated: false,
+    required: true,
   })
-  fal_id?: number;
+  id: string;
+
+  @property({
+    type: 'string',
+  })
+  fal_id?: string;
 
   @property({
     type: 'number',
     required: true,
   })
-  uni_id: number;
+  uni_id: string;
 
   @property({
     type: 'string',
@@ -35,9 +41,9 @@ export class Faculty extends Base {
   userId?: string;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  universityId?: number;
+  universityId?: string;
 
   @hasMany(() => Major)
   majors: Major[];

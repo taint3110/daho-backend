@@ -130,9 +130,9 @@ export class User extends Base {
   major: Major;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  cardId?: number;
+  cardId?: string;
 
   constructor(data?: Partial<User>) {
     super(data);

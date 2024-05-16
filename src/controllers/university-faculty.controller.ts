@@ -23,8 +23,9 @@ import {UniversityRepository} from '../repositories';
 
 export class UniversityFacultyController {
   constructor(
-    @repository(UniversityRepository) protected universityRepository: UniversityRepository,
-  ) { }
+    @repository(UniversityRepository)
+    protected universityRepository: UniversityRepository,
+  ) {}
 
   @get('/universities/{id}/faculties', {
     responses: {
@@ -39,7 +40,7 @@ export class UniversityFacultyController {
     },
   })
   async find(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @param.query.object('filter') filter?: Filter<Faculty>,
   ): Promise<Faculty[]> {
     return this.universityRepository.faculties(id).find(filter);
@@ -61,11 +62,12 @@ export class UniversityFacultyController {
           schema: getModelSchemaRef(Faculty, {
             title: 'NewFacultyInUniversity',
             exclude: ['fal_id'],
-            optional: ['universityId']
+            optional: ['universityId'],
           }),
         },
       },
-    }) faculty: Omit<Faculty, 'fal_id'>,
+    })
+    faculty: Omit<Faculty, 'fal_id'>,
   ): Promise<Faculty> {
     return this.universityRepository.faculties(id).create(faculty);
   }
@@ -79,7 +81,7 @@ export class UniversityFacultyController {
     },
   })
   async patch(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -88,7 +90,8 @@ export class UniversityFacultyController {
       },
     })
     faculty: Partial<Faculty>,
-    @param.query.object('where', getWhereSchemaFor(Faculty)) where?: Where<Faculty>,
+    @param.query.object('where', getWhereSchemaFor(Faculty))
+    where?: Where<Faculty>,
   ): Promise<Count> {
     return this.universityRepository.faculties(id).patch(faculty, where);
   }
@@ -102,8 +105,9 @@ export class UniversityFacultyController {
     },
   })
   async delete(
-    @param.path.number('id') id: number,
-    @param.query.object('where', getWhereSchemaFor(Faculty)) where?: Where<Faculty>,
+    @param.path.number('id') id: string,
+    @param.query.object('where', getWhereSchemaFor(Faculty))
+    where?: Where<Faculty>,
   ): Promise<Count> {
     return this.universityRepository.faculties(id).delete(where);
   }

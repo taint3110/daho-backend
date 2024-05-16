@@ -15,16 +15,13 @@ import {
   post,
   requestBody,
 } from '@loopback/rest';
-import {
-  Card,
-  DahoHelping,
-} from '../models';
+import {Card, DahoHelping} from '../models';
 import {CardRepository} from '../repositories';
 
 export class CardDahoHelpingController {
   constructor(
     @repository(CardRepository) protected cardRepository: CardRepository,
-  ) { }
+  ) {}
 
   @get('/cards/{id}/daho-helping', {
     responses: {
@@ -39,7 +36,7 @@ export class CardDahoHelpingController {
     },
   })
   async get(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @param.query.object('filter') filter?: Filter<DahoHelping>,
   ): Promise<DahoHelping> {
     return this.cardRepository.dahoHelping(id).get(filter);
@@ -61,11 +58,12 @@ export class CardDahoHelpingController {
           schema: getModelSchemaRef(DahoHelping, {
             title: 'NewDahoHelpingInCard',
             exclude: ['id'],
-            optional: ['cardId']
+            optional: ['cardId'],
           }),
         },
       },
-    }) dahoHelping: Omit<DahoHelping, 'id'>,
+    })
+    dahoHelping: Omit<DahoHelping, 'id'>,
   ): Promise<DahoHelping> {
     return this.cardRepository.dahoHelping(id).create(dahoHelping);
   }
@@ -79,7 +77,7 @@ export class CardDahoHelpingController {
     },
   })
   async patch(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -88,7 +86,8 @@ export class CardDahoHelpingController {
       },
     })
     dahoHelping: Partial<DahoHelping>,
-    @param.query.object('where', getWhereSchemaFor(DahoHelping)) where?: Where<DahoHelping>,
+    @param.query.object('where', getWhereSchemaFor(DahoHelping))
+    where?: Where<DahoHelping>,
   ): Promise<Count> {
     return this.cardRepository.dahoHelping(id).patch(dahoHelping, where);
   }
@@ -102,8 +101,9 @@ export class CardDahoHelpingController {
     },
   })
   async delete(
-    @param.path.number('id') id: number,
-    @param.query.object('where', getWhereSchemaFor(DahoHelping)) where?: Where<DahoHelping>,
+    @param.path.number('id') id: string,
+    @param.query.object('where', getWhereSchemaFor(DahoHelping))
+    where?: Where<DahoHelping>,
   ): Promise<Count> {
     return this.cardRepository.dahoHelping(id).delete(where);
   }

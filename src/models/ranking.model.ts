@@ -4,10 +4,12 @@ import {Base} from './base.model';
 @model()
 export class Ranking extends Base {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
+    generated: false,
+    required: true,
   })
-  id: number;
+  id: string;
 
   @property({
     type: 'string',

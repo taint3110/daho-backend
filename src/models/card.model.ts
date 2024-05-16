@@ -1,4 +1,4 @@
-import {model, property, hasOne} from '@loopback/repository';
+import {hasOne, model, property} from '@loopback/repository';
 import {Base} from './base.model';
 import {DahoHelping} from './daho-helping.model';
 import {User} from './user.model';
@@ -6,28 +6,35 @@ import {User} from './user.model';
 @model()
 export class Card extends Base {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
+    generated: false,
+    required: true,
   })
-  card_id: number;
+  id: string;
+
+  @property({
+    type: 'number',
+  })
+  card_id: string;
 
   @property({
     type: 'number',
     required: true,
   })
-  sub_id: number;
+  sub_id: string;
 
   @property({
     type: 'number',
     required: true,
   })
-  user_id: number;
+  user_id: string;
 
   @property({
     type: 'number',
     required: true,
   })
-  daho_id: number;
+  daho_id: string;
 
   @property({
     type: 'string',
@@ -76,9 +83,9 @@ export class Card extends Base {
   is_answered: boolean;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  subjectId?: number;
+  subjectId?: string;
 
   @hasOne(() => DahoHelping)
   dahoHelping: DahoHelping;
