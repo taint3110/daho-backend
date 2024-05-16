@@ -15,16 +15,14 @@ import {
   post,
   requestBody,
 } from '@loopback/rest';
-import {
-  Faculty,
-  Major,
-} from '../models';
+import {Faculty, Major} from '../models';
 import {FacultyRepository} from '../repositories';
 
 export class FacultyMajorController {
   constructor(
-    @repository(FacultyRepository) protected facultyRepository: FacultyRepository,
-  ) { }
+    @repository(FacultyRepository)
+    protected facultyRepository: FacultyRepository,
+  ) {}
 
   @get('/faculties/{id}/majors', {
     responses: {
@@ -39,7 +37,7 @@ export class FacultyMajorController {
     },
   })
   async find(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @param.query.object('filter') filter?: Filter<Major>,
   ): Promise<Major[]> {
     return this.facultyRepository.majors(id).find(filter);
@@ -61,11 +59,12 @@ export class FacultyMajorController {
           schema: getModelSchemaRef(Major, {
             title: 'NewMajorInFaculty',
             exclude: ['maj_id'],
-            optional: ['facultyId']
+            optional: ['facultyId'],
           }),
         },
       },
-    }) major: Omit<Major, 'maj_id'>,
+    })
+    major: Omit<Major, 'maj_id'>,
   ): Promise<Major> {
     return this.facultyRepository.majors(id).create(major);
   }
@@ -79,7 +78,7 @@ export class FacultyMajorController {
     },
   })
   async patch(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -102,7 +101,7 @@ export class FacultyMajorController {
     },
   })
   async delete(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Major)) where?: Where<Major>,
   ): Promise<Count> {
     return this.facultyRepository.majors(id).delete(where);

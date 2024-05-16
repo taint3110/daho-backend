@@ -5,10 +5,12 @@ import {Faculty} from './faculty.model';
 @model()
 export class University extends Base {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
+    generated: false,
+    required: true,
   })
-  id: number;
+  id: string;
 
   @property({
     type: 'string',

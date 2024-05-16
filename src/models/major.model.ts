@@ -5,17 +5,22 @@ import {Base} from './base.model';
 @model()
 export class Major extends Base {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
-    generated: true,
-  })
-  maj_id?: number;
-
-  @property({
-    type: 'number',
+    generated: false,
     required: true,
   })
-  fal_id: number;
+  id: string;
+
+  @property({
+    type: 'string',
+  })
+  maj_id?: string;
+
+  @property({
+    type: 'string',
+  })
+  fal_id: string;
 
   @property({
     type: 'string',
@@ -41,14 +46,14 @@ export class Major extends Base {
   userId?: string;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  facultyId?: number;
+  facultyId?: string;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  subjectId?: number;
+  subjectId?: string;
 
   constructor(data?: Partial<Major>) {
     super(data);

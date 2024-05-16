@@ -15,16 +15,14 @@ import {
   post,
   requestBody,
 } from '@loopback/rest';
-import {
-  Subject,
-  Card,
-} from '../models';
+import {Card, Subject} from '../models';
 import {SubjectRepository} from '../repositories';
 
 export class SubjectCardController {
   constructor(
-    @repository(SubjectRepository) protected subjectRepository: SubjectRepository,
-  ) { }
+    @repository(SubjectRepository)
+    protected subjectRepository: SubjectRepository,
+  ) {}
 
   @get('/subjects/{id}/cards', {
     responses: {
@@ -39,7 +37,7 @@ export class SubjectCardController {
     },
   })
   async find(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @param.query.object('filter') filter?: Filter<Card>,
   ): Promise<Card[]> {
     return this.subjectRepository.cards(id).find(filter);
@@ -61,11 +59,12 @@ export class SubjectCardController {
           schema: getModelSchemaRef(Card, {
             title: 'NewCardInSubject',
             exclude: ['card_id'],
-            optional: ['subjectId']
+            optional: ['subjectId'],
           }),
         },
       },
-    }) card: Omit<Card, 'card_id'>,
+    })
+    card: Omit<Card, 'card_id'>,
   ): Promise<Card> {
     return this.subjectRepository.cards(id).create(card);
   }
@@ -79,7 +78,7 @@ export class SubjectCardController {
     },
   })
   async patch(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -102,7 +101,7 @@ export class SubjectCardController {
     },
   })
   async delete(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Card)) where?: Where<Card>,
   ): Promise<Count> {
     return this.subjectRepository.cards(id).delete(where);

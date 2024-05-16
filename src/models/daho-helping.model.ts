@@ -4,10 +4,11 @@ import {Base} from './base.model';
 @model()
 export class DahoHelping extends Base {
   @property({
-    type: 'number',
-    id: true,
+    type: 'string',
+    generated: false,
+    required: true,
   })
-  id: number;
+  id: string;
 
   @property({
     type: 'string',
@@ -16,9 +17,9 @@ export class DahoHelping extends Base {
   name: string;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  cardId?: number;
+  cardId?: string;
 
   constructor(data?: Partial<DahoHelping>) {
     super(data);
