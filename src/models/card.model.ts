@@ -1,5 +1,7 @@
-import {model, property} from '@loopback/repository';
+import {model, property, hasOne} from '@loopback/repository';
 import {Base} from './base.model';
+import {DahoHelping} from './daho-helping.model';
+import {User} from './user.model';
 
 @model()
 export class Card extends Base {
@@ -72,6 +74,17 @@ export class Card extends Base {
     default: false,
   })
   is_answered: boolean;
+
+  @property({
+    type: 'number',
+  })
+  subjectId?: number;
+
+  @hasOne(() => DahoHelping)
+  dahoHelping: DahoHelping;
+
+  @hasOne(() => User)
+  user: User;
 
   constructor(data?: Partial<Card>) {
     super(data);

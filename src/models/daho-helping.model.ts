@@ -15,6 +15,11 @@ export class DahoHelping extends Base {
   })
   name: string;
 
+  @property({
+    type: 'number',
+  })
+  cardId?: number;
+
   constructor(data?: Partial<DahoHelping>) {
     super(data);
   }
