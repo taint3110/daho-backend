@@ -20,6 +20,36 @@ export class User extends Base {
 
   @property({
     type: 'string',
+    required: false,
+  })
+  fullname: string;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  avatar: string;
+
+  @property({
+    type: 'number',
+    required: false,
+  })
+  score: string;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  hobby: string;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  bio: string;
+
+  @property({
+    type: 'string',
     required: true,
   })
   name: string;
