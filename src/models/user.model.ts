@@ -1,10 +1,10 @@
 import {hasOne, model, property} from '@loopback/repository';
 import {EAccountType, EUserRoleEnum} from '../enums/user';
 import {Base} from './base.model';
-import {UserCredentials} from './user-credentials.model';
 import {University} from './university.model';
 import {Faculty} from './faculty.model';
 import {Major} from './major.model';
+import {UserCredentials} from './user-credentials.model';
 
 @model()
 export class User extends Base {
@@ -65,9 +65,9 @@ export class User extends Base {
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
-  password: string;
+  password?: string;
 
   @property({
     type: 'string',
@@ -117,9 +117,6 @@ export class User extends Base {
   })
   resetPasswordToken: string;
 
-  @hasOne(() => UserCredentials)
-  userCredentials: UserCredentials;
-
   @hasOne(() => University)
   university: University;
 
@@ -133,6 +130,9 @@ export class User extends Base {
     type: 'string',
   })
   cardId?: string;
+
+  @hasOne(() => UserCredentials)
+  userCredentials: UserCredentials;
 
   constructor(data?: Partial<User>) {
     super(data);

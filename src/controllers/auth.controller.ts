@@ -137,6 +137,7 @@ export class AuthController {
       accountType: userData?.accountType,
       phoneNumber: String(userData?.phoneNumber ?? '') ?? '',
       isActive: true,
+      username: userData.username,
     };
 
     let newUser: Partial<User>;
@@ -147,13 +148,13 @@ export class AuthController {
     } else {
       newUser = await this.userRepository.create(newUserData);
     }
-
+    console.log(userData);
     const hashedPassword: string = await this.hasher.hashPassword(
       userData.password,
     );
     await this.userRepository
       .userCredentials(newUser.id)
-      .create({password: hashedPassword});
+      .create({password: hashedPassword ?? ''});
     return newUser;
   }
 
@@ -182,6 +183,7 @@ export class AuthController {
   async login(
     @requestBody(CredentialsRequestBody) credentials: Credentials,
   ): Promise<{userId: string; token: string}> {
+    console.log(credentials);
     const user: User = await this.userService.verifyCredentials(credentials);
     const userProfile: MyUserProfile =
       this.userService.convertToUserProfile(user);
