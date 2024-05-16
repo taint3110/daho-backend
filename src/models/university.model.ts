@@ -8,44 +8,43 @@ export class University extends Base {
     type: 'string',
     id: true,
     generated: false,
-    required: true,
   })
   id: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   name: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   icon: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   code: string;
 
   @property({
     type: 'array',
     itemType: 'string',
-    required: true,
+    required: false,
   })
   src: string[];
 
   @property({
     type: 'number',
-    required: true,
+    required: false,
   })
   drl: number;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   desc: string;
 

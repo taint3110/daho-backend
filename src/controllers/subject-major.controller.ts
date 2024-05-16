@@ -37,7 +37,7 @@ export class SubjectMajorController {
     },
   })
   async get(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Major>,
   ): Promise<Major> {
     return this.subjectRepository.major(id).get(filter);
@@ -52,7 +52,7 @@ export class SubjectMajorController {
     },
   })
   async create(
-    @param.path.number('id') id: typeof Subject.prototype.sub_id,
+    @param.path.string('id') id: typeof Subject.prototype.sub_id,
     @requestBody({
       content: {
         'application/json': {
@@ -78,7 +78,7 @@ export class SubjectMajorController {
     },
   })
   async patch(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -101,7 +101,7 @@ export class SubjectMajorController {
     },
   })
   async delete(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Major)) where?: Where<Major>,
   ): Promise<Count> {
     return this.subjectRepository.major(id).delete(where);

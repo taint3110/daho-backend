@@ -8,7 +8,6 @@ export class Major extends Base {
     type: 'string',
     id: true,
     generated: false,
-    required: true,
   })
   id: string;
 
@@ -24,19 +23,19 @@ export class Major extends Base {
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   name: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   desc: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   img: string;
 

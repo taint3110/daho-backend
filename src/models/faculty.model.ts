@@ -8,7 +8,6 @@ export class Faculty extends Base {
     type: 'string',
     id: true,
     generated: false,
-    required: true,
   })
   id: string;
 
@@ -18,20 +17,20 @@ export class Faculty extends Base {
   fal_id?: string;
 
   @property({
-    type: 'number',
-    required: true,
+    type: 'string',
+    required: false,
   })
   uni_id: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   name: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   code: string;
 

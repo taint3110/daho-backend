@@ -148,7 +148,6 @@ export class AuthController {
     } else {
       newUser = await this.userRepository.create(newUserData);
     }
-    console.log(userData);
     const hashedPassword: string = await this.hasher.hashPassword(
       userData.password,
     );
@@ -183,7 +182,6 @@ export class AuthController {
   async login(
     @requestBody(CredentialsRequestBody) credentials: Credentials,
   ): Promise<{userId: string; token: string}> {
-    console.log(credentials);
     const user: User = await this.userService.verifyCredentials(credentials);
     const userProfile: MyUserProfile =
       this.userService.convertToUserProfile(user);

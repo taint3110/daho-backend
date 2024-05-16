@@ -9,7 +9,6 @@ export class Subject extends Base {
     type: 'string',
     id: true,
     generated: false,
-    required: true,
   })
   id: string;
 
@@ -20,31 +19,31 @@ export class Subject extends Base {
 
   @property({
     type: 'number',
-    required: true,
+    required: false,
   })
   maj_id: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   name: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   icon: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   img: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   desc: string;
 
