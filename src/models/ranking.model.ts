@@ -7,25 +7,24 @@ export class Ranking extends Base {
     type: 'string',
     id: true,
     generated: false,
-    required: true,
   })
   id: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   name: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   uni: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   score: string;
 

@@ -37,7 +37,7 @@ export class FacultyMajorController {
     },
   })
   async find(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Major>,
   ): Promise<Major[]> {
     return this.facultyRepository.majors(id).find(filter);
@@ -52,7 +52,7 @@ export class FacultyMajorController {
     },
   })
   async create(
-    @param.path.number('id') id: typeof Faculty.prototype.fal_id,
+    @param.path.string('id') id: typeof Faculty.prototype.fal_id,
     @requestBody({
       content: {
         'application/json': {
@@ -78,7 +78,7 @@ export class FacultyMajorController {
     },
   })
   async patch(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -101,7 +101,7 @@ export class FacultyMajorController {
     },
   })
   async delete(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Major)) where?: Where<Major>,
   ): Promise<Count> {
     return this.facultyRepository.majors(id).delete(where);

@@ -36,7 +36,7 @@ export class CardDahoHelpingController {
     },
   })
   async get(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<DahoHelping>,
   ): Promise<DahoHelping> {
     return this.cardRepository.dahoHelping(id).get(filter);
@@ -51,7 +51,7 @@ export class CardDahoHelpingController {
     },
   })
   async create(
-    @param.path.number('id') id: typeof Card.prototype.card_id,
+    @param.path.string('id') id: typeof Card.prototype.card_id,
     @requestBody({
       content: {
         'application/json': {
@@ -77,7 +77,7 @@ export class CardDahoHelpingController {
     },
   })
   async patch(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -101,7 +101,7 @@ export class CardDahoHelpingController {
     },
   })
   async delete(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(DahoHelping))
     where?: Where<DahoHelping>,
   ): Promise<Count> {

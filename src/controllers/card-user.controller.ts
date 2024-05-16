@@ -36,7 +36,7 @@ export class CardUserController {
     },
   })
   async get(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<User>,
   ): Promise<User> {
     return this.cardRepository.user(id).get(filter);
@@ -51,7 +51,7 @@ export class CardUserController {
     },
   })
   async create(
-    @param.path.number('id') id: typeof Card.prototype.card_id,
+    @param.path.string('id') id: typeof Card.prototype.card_id,
     @requestBody({
       content: {
         'application/json': {
@@ -77,7 +77,7 @@ export class CardUserController {
     },
   })
   async patch(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -100,7 +100,7 @@ export class CardUserController {
     },
   })
   async delete(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(User)) where?: Where<User>,
   ): Promise<Count> {
     return this.cardRepository.user(id).delete(where);

@@ -9,7 +9,6 @@ export class Card extends Base {
     type: 'string',
     id: true,
     generated: false,
-    required: true,
   })
   id: string;
 
@@ -20,37 +19,37 @@ export class Card extends Base {
 
   @property({
     type: 'number',
-    required: true,
+    required: false,
   })
   sub_id: string;
 
   @property({
     type: 'number',
-    required: true,
+    required: false,
   })
   user_id: string;
 
   @property({
     type: 'number',
-    required: true,
+    required: false,
   })
   daho_id: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   title: string;
 
   @property({
     type: 'number',
-    required: true,
+    required: false,
   })
   award: number;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   created_date: string;
 
@@ -61,7 +60,7 @@ export class Card extends Base {
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   text: string;
 

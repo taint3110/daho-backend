@@ -37,7 +37,7 @@ export class SubjectCardController {
     },
   })
   async find(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Card>,
   ): Promise<Card[]> {
     return this.subjectRepository.cards(id).find(filter);
@@ -52,7 +52,7 @@ export class SubjectCardController {
     },
   })
   async create(
-    @param.path.number('id') id: typeof Subject.prototype.sub_id,
+    @param.path.string('id') id: typeof Subject.prototype.sub_id,
     @requestBody({
       content: {
         'application/json': {
@@ -78,7 +78,7 @@ export class SubjectCardController {
     },
   })
   async patch(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -101,7 +101,7 @@ export class SubjectCardController {
     },
   })
   async delete(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Card)) where?: Where<Card>,
   ): Promise<Count> {
     return this.subjectRepository.cards(id).delete(where);

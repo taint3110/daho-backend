@@ -5,14 +5,14 @@ import {Base} from './base.model';
 export class DahoHelping extends Base {
   @property({
     type: 'string',
+    id: true,
     generated: false,
-    required: true,
   })
   id: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   name: string;
 
