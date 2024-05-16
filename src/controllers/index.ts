@@ -19,3 +19,4 @@ export * from './subject-card.controller';
 export * from './card-daho-helping.controller';
 export * from './card-user.controller';
 export * from './subject-major.controller';
+export * from './user-user-credentials.controller';
