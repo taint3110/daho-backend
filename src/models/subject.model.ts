@@ -1,5 +1,7 @@
-import {model, property} from '@loopback/repository';
+import {model, property, hasMany, hasOne} from '@loopback/repository';
 import {Base} from './base.model';
+import {Card} from './card.model';
+import {Major} from './major.model';
 
 @model()
 export class Subject extends Base {
@@ -38,6 +40,12 @@ export class Subject extends Base {
     required: true,
   })
   desc: string;
+
+  @hasMany(() => Card)
+  cards: Card[];
+
+  @hasOne(() => Major)
+  major: Major;
 
   constructor(data?: Partial<Subject>) {
     super(data);

@@ -2,6 +2,9 @@ import {hasOne, model, property} from '@loopback/repository';
 import {EAccountType, EUserRoleEnum} from '../enums/user';
 import {Base} from './base.model';
 import {UserCredentials} from './user-credentials.model';
+import {University} from './university.model';
+import {Faculty} from './faculty.model';
+import {Major} from './major.model';
 
 @model()
 export class User extends Base {
@@ -116,6 +119,20 @@ export class User extends Base {
 
   @hasOne(() => UserCredentials)
   userCredentials: UserCredentials;
+
+  @hasOne(() => University)
+  university: University;
+
+  @hasOne(() => Faculty)
+  faculty: Faculty;
+
+  @hasOne(() => Major)
+  major: Major;
+
+  @property({
+    type: 'number',
+  })
+  cardId?: number;
 
   constructor(data?: Partial<User>) {
     super(data);

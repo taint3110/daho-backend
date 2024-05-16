@@ -1,5 +1,6 @@
-import {model, property} from '@loopback/repository';
+import {model, property, hasMany} from '@loopback/repository';
 import {Base} from './base.model';
+import {Major} from './major.model';
 
 @model()
 export class Faculty extends Base {
@@ -27,6 +28,19 @@ export class Faculty extends Base {
     required: true,
   })
   code: string;
+
+  @property({
+    type: 'string',
+  })
+  userId?: string;
+
+  @property({
+    type: 'number',
+  })
+  universityId?: number;
+
+  @hasMany(() => Major)
+  majors: Major[];
 
   constructor(data?: Partial<Faculty>) {
     super(data);

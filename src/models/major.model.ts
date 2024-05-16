@@ -35,6 +35,21 @@ export class Major extends Base {
   })
   img: string;
 
+  @property({
+    type: 'string',
+  })
+  userId?: string;
+
+  @property({
+    type: 'number',
+  })
+  facultyId?: number;
+
+  @property({
+    type: 'number',
+  })
+  subjectId?: number;
+
   constructor(data?: Partial<Major>) {
     super(data);
   }
